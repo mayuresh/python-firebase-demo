@@ -1,5 +1,4 @@
 from multiprocessing import Process
-from twitter import *
 from firebase import  firebase
 from sseclient import SSEClient
 import time
@@ -13,7 +12,6 @@ def poll_target():
 	sse = SSEClient("https://dazzling-fire-5952.firebaseio.com/PythonChatDemo/Track.json")
 	print("Watching Firebase node - %s" % ("https://dazzling-fire-5952.firebaseio.com/PythonChatDemo/Track.json"))
 	for t in sse:
-		print("Data changed !")
 		t_data = json.loads(t.data)	
 		if t_data is None: # Keep alive
 			continue
@@ -21,7 +19,7 @@ def poll_target():
 		if t_data["data"] is None:
 			continue
 		
-		for (k,v) in t_data["data"].items():
+		for (k, v) in t_data["data"].items():
 			print("%s says: %s" % (k, v))
 
 #Main
