@@ -5,6 +5,7 @@ from multiprocessing import Process, Lock
 from multiprocessing.sharedctypes import Value, Array
 import time
 import json
+import twitter_config
 
 roomId = "Room000001"
 roomPath = "/Rooms/" + roomId 
@@ -43,7 +44,7 @@ if __name__ == '__main__':
 	lock = Lock()
 
 	fb = firebase.FirebaseApplication("https://dazzling-fire-5952.firebaseio.com", None)
-	ts = TwitterStream(auth = OAuth("33405551-cJVv8iVj89Ij96UmfeZgodrPThflazQP7P4xDF1Q4", "NBWBEfSekH5L68gph0iuVt0I34ZtIDlJcwTRAOvNZquMX", "Va8PNlJkp7Y2djz5yg5Oa0ayF", "JARxa38V29NE6pftREGKwASPpZKmDnnfxVIevE9bxG8mFVUuKI"))
+	ts = TwitterStream(auth = twitter_config.auth)
 
 	track = fb.get(roomPath, "Track")
 	s = Array('c', b'1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 ', lock=lock)

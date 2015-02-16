@@ -1,6 +1,6 @@
 from twitter import *
 from firebase import  firebase
-from chat import ClosableSSEClient
+from sseclient import SSEClient
 import time
 import json
 
@@ -9,7 +9,7 @@ roomPath = "/Rooms/" + roomId
 tweetsPath = roomPath + "/Tweets"
 
 def poll_target():
-	sse = ClosableSSEClient("https://dazzling-fire-5952.firebaseio.com/PythonDemo/Track.json")
+	sse = SSEClient("https://dazzling-fire-5952.firebaseio.com/PythonDemo/Track.json")
 	print("Watchin Firebase node - %s" % ("https://dazzling-fire-5952.firebaseio.com/PythonDemo/Track.json"))
 	for t in sse:
 		print("Data changed !")
