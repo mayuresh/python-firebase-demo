@@ -33,5 +33,5 @@ if __name__ == '__main__':
 	t.start()
 
 	while(True):
-		message = input("Message: ")
+		message = input("")
 		fb.post('/PythonChatDemo/Track', {username: message})
