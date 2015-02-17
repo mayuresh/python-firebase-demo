@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <style type="text/css">
+        .fixed-panel {
+            min-height: 15em;
+            max-height: 15em;
+            overflow-y: scroll;
+        }
+    </style>
+
+    <title>Firebase Chat</title>
+</head>
+<body ng-app="chat">
+
+<div class="container" ng-controller="ChatController">
+    <div class="row">
+        <div class="col-md-4">
+            <span class="label label-primary">Username: </span><input type="text" class="form-control" ng-model="username">
+        </div>
+</div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-info" >
+
+                <div class="panel-heading">
+                    <span>Chat History </span>
+                </div>
+                <div class="panel-body fixed-panel" scroll-glue="glued">
+                    <ul class="media-list">
+
+                        <li class="media" ng-repeat="message in chat_messages">
+
+                            <span class="label label-primary">{{message.name}} says</span>&nbsp;
+                            <span class="message">{{message.message}}</span>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <input type="text" class="form-control" placeholder="Enter message ..." ng-keypress="newMessageKeyPress($event)" ng-model="new_message">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+    <script src="lib/angular.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.0/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.9.2/angularfire.min.js"></script>
+    <script src="scripts/chat/chat.module.js"></script>
+    <script src="scripts/chat/services/chat.service.js"></script>
+    <script src="scripts/chat/controllers/chat.controller.js"></script>
+    <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/v2.0.2/src/scrollglue.js"></script>
+</body>
+</html>

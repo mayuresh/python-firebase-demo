@@ -2,6 +2,7 @@ from multiprocessing import Process
 from firebase import firebase
 from sseclient import SSEClient
 import json
+import time
 
 FIREBASE_URL = "https://dazzling-fire-5952.firebaseio.com/"
 
@@ -19,16 +20,16 @@ def poll_chat():
         if message_data["data"] is None:
             continue
 
+        # print("message_data = %s\n" %(message_data))
+
         if message_data["path"] == "/": # Initial Read for old messages
             print("Previous messages")
-            for (nodeid, message_dict) in message_data["data"].items():
-                #print("nodeid: %s, message_dict: %s" % (nodeid, message_dict))
-                for (name, message) in message_dict.items():
-                    print("%s says: %s" % (name, message))
+            for (nodeid, message) in message_data["data"].items():
+                #print("message = %s" % (message))
+                print("%s says: %s" % (message["name"], message["message"]))
 
         else: # New Message
-            for (name, message) in message_data["data"].items():
-                print("%s says: %s" % (name, message))
+            print("%s says: %s" % (message_data["data"]["name"], message_data["data"]["message"]))
 
 # Main
 if __name__ == '__main__':
@@ -41,9 +42,9 @@ if __name__ == '__main__':
     fb = firebase.FirebaseApplication(FIREBASE_URL, None)
 
     # Post initial message to Firebase
-    fb.post('/PythonChatDemo/Track', {username: "Joined the chat"})
+    fb.post('/PythonChatDemo/Track', {"name": username, "message": "Joined the chat", ".priority": time.time() * 1000 })
 
     # Post new messages to Firebase
     while (True):
         message = input("")
-        fb.post('/PythonChatDemo/Track', {username: message})
+        fb.post('/PythonChatDemo/Track', {"name": username, "message": message, ".priority": time.time() * 1000 })

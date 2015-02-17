@@ -1,0 +1,11 @@
+.completed {
+    text-decoration: line-through;
+}
+
+.selected {
+    background: lightgray;
+}
+
+a, u {
+    text-decoration: none;
+}

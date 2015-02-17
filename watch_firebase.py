@@ -1,4 +1,3 @@
-from twitter import *
 from firebase import  firebase
 from sseclient import SSEClient
 import time
