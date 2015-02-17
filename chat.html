@@ -43,8 +43,8 @@
 
                         <li class="media" ng-repeat="message in chat_messages">
 
-                            <span class="label label-primary">{{message.name}} says</span>&nbsp;
-                            <span class="message">{{message.message}}</span>
+                            <span class="label label-primary" ng-bind="message.name"></span>&nbsp;
+                            <span class="message" ng-bind="message.message"></span>
                         </li>
 
                     </ul>
