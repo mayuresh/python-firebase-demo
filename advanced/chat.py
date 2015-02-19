@@ -6,10 +6,11 @@ import json
 import threading
 import socket
 import sys
+from queue import Queue
 
 
 #DISPLAY_CLASS = display.BasicDisplay
-#DISPLAY_CLASS = display.CursesDisplay
+DISPLAY_CLASS = display.CursesDisplay
 
 URL = 'https://eventsource.firebaseio-demo.com/.json'
 
