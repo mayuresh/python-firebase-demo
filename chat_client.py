@@ -49,4 +49,4 @@ if __name__ == '__main__':
     while (True):
         message = raw_input("")
         print("\n")
-        fb.post('/PythonChatDemo/messages', {"name": username, "message": message, ".priority": time.time() * 1000 })
+        fb.post('/PythonChatDemo/Messages', {"name": username, "message": message, ".priority": time.time() * 1000 })
