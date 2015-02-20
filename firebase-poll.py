@@ -1,14 +1,18 @@
 #!/usr/local/bin/python2.7
 
 from firebase import firebase
+from sseclient import SSEClient
+import json
 
 FIREBASE_URL = "https://dazzling-fire-5952.firebaseio.com/"
 
 # Main
 if __name__ == '__main__':
-
     fb = firebase.FirebaseApplication(FIREBASE_URL, None) # Create a reference to the Firebase Application
 
-    data = raw_input("Input Data: ") # Get data from terminal
+    sse = SSEClient("https://dazzling-fire-5952.firebaseio.com/PythonDemo.json")
 
-    fb.put('/PythonDemo/Node1', "Data", data) # Add data to Node Node1
+    for new_message in sse:
+        message_data = json.loads(new_message.data)
+
+        print("message_data = %s\n" %(message_data))
