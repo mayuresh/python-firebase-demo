@@ -5,7 +5,7 @@
 angular.module("chat").
     controller("ChatController", ['$scope', '$firebase', function ($scope, $firebase) {
         console.log("In controller");
-        var firebaseUrl = "https://dazzling-fire-5952.firebaseio.com/PythonChatDemo/Track";
+        var firebaseUrl = "https://dazzling-fire-5952.firebaseio.com/PythonChatDemo/Messages";
         var chatRef = new Firebase(firebaseUrl);
         var sync = $firebase(chatRef);
 

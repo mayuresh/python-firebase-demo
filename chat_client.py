@@ -8,8 +8,8 @@ FIREBASE_URL = "https://dazzling-fire-5952.firebaseio.com/"
 
 
 def poll_chat():
-    sse = SSEClient(FIREBASE_URL + "PythonChatDemo/Track.json")
-    print("Watching Firebase node - %s" % (FIREBASE_URL + "PythonChatDemo/Track.json"))
+    sse = SSEClient(FIREBASE_URL + "PythonChatDemo/Messages.json")
+    print("Watching Firebase node - %s" % (FIREBASE_URL + "PythonChatDemo/Messages.json"))
 
     for new_message in sse:
         message_data = json.loads(new_message.data)
@@ -38,13 +38,15 @@ if __name__ == '__main__':
     t = Process(target=poll_chat)
     t.start()
 
-    username = input("Input your name: ")
+    time.sleep(1)
+    username = raw_input("Input your name: ")
     fb = firebase.FirebaseApplication(FIREBASE_URL, None)
 
     # Post initial message to Firebase
-    fb.post('/PythonChatDemo/Track', {"name": username, "message": "Joined the chat", ".priority": time.time() * 1000 })
+    fb.push('/PythonChatDemo/Messages', {"name": username, "message": "Joined the chat", ".priority": time.time() * 1000 })
 
     # Post new messages to Firebase
     while (True):
-        message = input("")
-        fb.post('/PythonChatDemo/Track', {"name": username, "message": message, ".priority": time.time() * 1000 })
+        message = raw_input("")
+        print("\n")
+        fb.post('/PythonChatDemo/messages', {"name": username, "message": message, ".priority": time.time() * 1000 })
