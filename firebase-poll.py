@@ -1,5 +1,3 @@
-#!/usr/local/bin/python2.7
-
 from firebase import firebase
 from sseclient import SSEClient
 import json

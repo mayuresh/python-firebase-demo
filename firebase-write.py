@@ -1,5 +1,3 @@
-#!/usr/local/bin/python2.7
-
 from firebase import firebase
 
 FIREBASE_URL = "https://dazzling-fire-5952.firebaseio.com/"
