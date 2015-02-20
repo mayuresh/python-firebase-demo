@@ -43,7 +43,7 @@ if __name__ == '__main__':
     fb = firebase.FirebaseApplication(FIREBASE_URL, None)
 
     # Post initial message to Firebase
-    fb.push('/PythonChatDemo/Messages', {"name": username, "message": "Joined the chat", ".priority": time.time() * 1000 })
+    fb.post('/PythonChatDemo/Messages', {"name": username, "message": "Joined the chat", ".priority": time.time() * 1000 })
 
     # Post new messages to Firebase
     while (True):
