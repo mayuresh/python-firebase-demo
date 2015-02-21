@@ -1,4 +1,4 @@
-# Demo - Using Pythin with Firebase
+# Demo - Using Python with Firebase
 
 The script firebase-read.py will read from Firebase
 
