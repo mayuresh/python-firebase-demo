@@ -1,7 +1,8 @@
 # Demo - Using Python with Firebase
 
-The script firebase-read.py will read from Firebase
+firebase-read.py - Read data from Firebase
+firebase-write.py - Write data to Firebase
+firebase-poll.py - Poll for changes to data in Firebase using SSEClient
+chat_client.py - Rudimentry chat client using Python and Firebase
 
-The script firebase-write.py will write to Firebase
-
-The scrit chat_client.py is a basic chat client, combining the read and write fucntionalities.
+ui-client - Angular JS based UI client for chat. Works with chat_client.py. A hosted version is available at http://mayuresh.github.io/python-firebase-demo/ui-client/chat.html
