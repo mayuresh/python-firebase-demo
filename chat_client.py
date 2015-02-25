@@ -22,14 +22,21 @@ def poll_chat():
 
         # print("message_data = %s\n" %(message_data))
 
-        if message_data["path"] == "/": # Initial Read for old messages
+        if message_data["path"] == "/":  # Initial Read for old messages
             print("Previous messages")
             for (nodeid, message) in message_data["data"].items():
-                #print("message = %s" % (message))
-                print("%s says: %s" % (message["name"], message["message"]))
+                try:
+                    # print("message = %s" % (message))
+                    print("%s says: %s" % (message["name"], message["message"]))
+                except:
+                    pass
 
-        else: # New Message
-            print("%s says: %s" % (message_data["data"]["name"], message_data["data"]["message"]))
+        else:  # New Message
+            try:
+                print("%s says: %s" % (message_data["data"]["name"], message_data["data"]["message"]))
+            except:
+                pass
+
 
 # Main
 if __name__ == '__main__':
@@ -43,10 +50,29 @@ if __name__ == '__main__':
     fb = firebase.FirebaseApplication(FIREBASE_URL, None)
 
     # Post initial message to Firebase
-    fb.post('/PythonChatDemo/Messages', {"name": username, "message": "Joined the chat", ".priority": time.time() * 1000 })
+    fb.post('/PythonChatDemo/Messages',
+            {"name": username,
+             "message": "Joined the chat",
+             ".priority": time.time() * 1000
+            })
 
     # Post new messages to Firebase
     while (True):
         message = raw_input("")
         print("\n")
-        fb.post('/PythonChatDemo/Messages', {"name": username, "message": message, ".priority": time.time() * 1000 })
+        fb.post('/PythonChatDemo/Messages',
+                {
+                    "name": username,
+                    "message": message,
+                    ".priority": time.time() * 1000
+                })
+
+
+
+
+
+
+
+
+
+
